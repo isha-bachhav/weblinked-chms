@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Web-linked CHMS</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="healthy.png" type="">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/dummyindex.css" rel="stylesheet">
+  <link rel="icon" href="img/healthy.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <style>
+    body {
+      background-image: url("https://png.pngtree.com/background/20210709/original/pngtree-office-items-picture-desk-on-the-desktop-picture-image_666140.jpg");
+      background-size: cover;
+      align-items: center;
+
+    }
+
+    .registration-form {
+      width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .navbar-nav .nav-link {
+      font-size: 18px;
+      /* Increase font size */
+      font-weight: bold;
+      /* Make it bold */
+      position: relative;
+      color: rgb(15, 2, 72);
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ffc107;
+      /* Change color on hover */
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background-color: #ffc107;
+      /* Color of the dash */
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+  <!-- Spinner End -->
+
+
+
+  <!-- Navbar Start -->
+  <div class="container-fluid bg-primary">
+    <div class="container">
+      <nav class="navbar navbar-dark navbar-expand-lg py-0">
+        <a href="register.html" class="navbar-brand">
+          <h1 class="text-white fw-bold d-block">Web-linked &nbsp;<span class="">CHMS</span> </h1>
+        </a>
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
+          <div class="navbar-nav ms-auto mx-xl-auto p-0">
+
+            <a href="login.html" class="nav-item nav-link">Login</a>
+            <a href="register.html" class="nav-item nav-link">registration</a>
+
+
+
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- Navbar End -->
+
+  <div class="container">
+    <div class="registration-form">
+      <h2 class="text-center mb-4">Registration</h2>
+      <form id="registrationForm" onsubmit="return registerUser()" action="php/login.php" method="post">
+        <div class="form-group">
+          <input type="text"  id="name" name="name"  class="form-control" placeholder="User Name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth:</label>
+          <input type="text"  id="name" name="name" class="form-control datepicker" placeholder="Date of Birth" required>
+        </div>
+        <div class="form-group">
+          <label>Gender:</label>
+          <select id="gender" class="form-control" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div id="uniqueID" class="text-center mt-3" style="display: none;"></div>
+
+        <div class="form-group">
+          <input type="password" id="password" class="form-control" placeholder="Set Password" required>
+        </div>
+        <div class="form-group">
+          <select id="state" class="form-control" required>
+            <option value="">Select State</option>
+            <!-- Populate states dynamically -->
+            <option value="Andhra Pradesh">Maharashtra</option>
+
+            <!-- Add other states here -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <select id="city" class="form-control" required>
+            <option value="">Select City</option>
+            <option value="">Nashik</option>
+            <option value="">Pune</option>
+            <option value="">Mumbai</option>
+            <option value="">Nagpur</option>
+            <option value="">Kolhapur</option>
+            <!-- Populate cities dynamically based on selected state -->
+          </select>
+        </div>
+        <form id="registrationForm" onsubmit="return registerUser();">
+          <!-- Your form fields here -->
+
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+
+
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  
+  
+  
+    <script>
+
+      var usedIDs = []; // Array to store used IDs
+
+      function generateID() {
+          var id;
+          do {
+              id = Math.floor(10 + Math.random() * 90); // Generate a random 2-digit ID
+          } while (usedIDs.includes(id)); // Check if the ID has been used before
+          usedIDs.push(id); // Add the ID to the used IDs array
+          return id;
+      }
+
+
+    function validatePassword(password) {
+        // Password must be at least 8 characters long and contain one number, one alphabet, and one special symbol
+        var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/;
+        return regex.test(password);
+    } function loginUser() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var email = document.getElementById('email').value;
+
+      if (!validatePassword(password)) {
+          alert("Password must be at least 8 characters long and contain one number, one alphabet, and one special symbol.");
+          return false; // Prevent form submission
+      }
+
+      // Assuming login process is successful
+      var uniqueID = generateID();
+      document.getElementById('uniqueID').innerText = "Your unique ID: " + uniqueID;
+      document.getElementById('uniqueID').style.display = "block";
+
+      alert("Login successful! Your unique ID has been displayed.");
+      return false; // Prevent form submission
+  }
+
+        
+    
+    // Datepicker initialization
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      orientation: 'bottom'
+    });
+
+    function registerUser() {
+      var firstName = document.getElementById('firstName').value;
+      var lastName = document.getElementById('lastName').value;
+      var dob = document.getElementById('dob').value;
+      var gender = document.getElementById('gender').value;
+      var generatedID = document.getElementById('generatedID').value;
+      var password = document.getElementById('password').value;
+      var state = document.getElementById('state').value;
+      var city = document.getElementById('city').value;
+
+      // Add your registration process here
+
+      alert("Registration successful!");
+      return false; // Prevent form submission
+    }
+
+    function registerUser() {
+      // Your registration logic here
+
+      // Assuming registration is successful, redirect to index.html
+      window.location.href = "index.html";
+
+      // Prevent form submission (optional)
+      return false;
+    }
+
+    //uid
+    function generateID() {
+      return Math.floor(10 + Math.random() * 90); // Random number between 10 and 99
+    }
+
+  </script>
+
+
+
+
+
+
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

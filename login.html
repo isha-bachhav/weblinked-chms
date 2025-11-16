@@ -1,0 +1,172 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Web-linked CHMS</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="img/healthy.png" type="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("https://t3.ftcdn.net/jpg/06/12/89/52/360_F_612895290_5m4XeQsdmekGhrRlgId6HB3jfPkKvzwq.jpg");
+            background-size: cover;
+        }
+
+        .login-form {
+            width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            /* Increase font size */
+            font-weight: bold;
+            /* Make it bold */
+            position: relative;
+            color: chartreuse;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107;
+            /* Change color on hover */
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: #ffc107;
+            /* Color of the dash */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+   
+   
+    <div class="container-fluid bg-primary">
+        <div class="container">
+            <nav class="navbar navbar-dark navbar-expand-lg ">
+                <a href="register.html" class="navbar-brand">
+                    <h1 class="text-white fw-bold d-block">Web-linked &nbsp;<span class="">CHMS</span> </h1>
+                </a>
+                <div class="navbar-nav ms-auto mx-xl-auto p-0">
+
+                    <a href="login.html" class="nav-item nav-link">Login</a>
+                    <a href="register.html" class="nav-item nav-link">Register</a>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+    <!-- Navbar End -->
+
+
+    <br><br>
+
+
+    <div class="container">
+        <div class="login-form">
+            <h2 class="text-center mb-4">Login</h2>
+            <form id="loginForm"  action="php/login_process.php" method="POST">
+                <div class="form-group" >
+                    <input type="text"  id="username" name="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Password must be at least 8 characters long and contain one number, one alphabet, and one
+                        special symbol.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div id="uniqueID" class="text-center mt-3" style="display: none;"></div>
+        </div>
+    </div>
+    <!--script starts-->
+    <script>
+
+        var usedIDs = []; // Array to store used IDs
+
+      function generateID() {
+          var id;
+          do {
+              id = Math.floor(10 + Math.random() * 90); // Generate a random 2-digit ID
+          } while (usedIDs.includes(id)); // Check if the ID has been used before
+          usedIDs.push(id); // Add the ID to the used IDs array
+          return id;
+      }
+
+        function validatePassword(password) {
+            // Password must be at least 8 characters long and contain one number, one alphabet, and one special symbol
+            var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/;
+            return regex.test(password);
+        }
+
+        function loginUser() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var email = document.getElementById('email').value;
+
+            if (!validatePassword(password)) {
+                alert("Password must be at least 8 characters long and contain one number, one alphabet, and one special symbol.");
+                return false; // Prevent form submission
+            }
+
+            // Assuming login process is successful
+            var uniqueID = generateID();
+            document.getElementById('uniqueID').innerText = "Your unique ID: " + uniqueID;
+            document.getElementById('uniqueID').style.display = "block";
+
+            alert("Login successful! Your unique ID has been displayed.");
+            return false; // Prevent form submission
+        }
+
+        
+    </script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
